@@ -8,58 +8,25 @@ let dollarIcon = document.querySelector(".d-sign");
 let userIcon = document.querySelector(".u-sign");
 let resetButton = document.querySelector(".reset");
 
-
 noOfPeople.addEventListener("keyup", function(){
     totalBill.value / noOfPeople.value
 });
 
-tipPercentage[0].addEventListener("click", function(){
-    let tipPerPerson = (valueOfTip[0].textContent / 100) * totalBill.value / noOfPeople.value
-    let totalTip = tipAmountPerPerson.textContent = tipPerPerson
-    totalBillPerPerson.textContent = totalTip + (totalBill.value / noOfPeople.value)
-    dollarIcon.style.display = "none"
-    userIcon.style.display = "none"
-});
-
-tipPercentage[1].addEventListener("click", function(){
-    let tipPerPerson = (valueOfTip[1].textContent / 100) * totalBill.value / noOfPeople.value
-    let totalTip = tipAmountPerPerson.textContent = tipPerPerson
-    totalBillPerPerson.textContent = totalTip + (totalBill.value / noOfPeople.value)
-    dollarIcon.style.display = "none"
-    userIcon.style.display = "none"
-});
-
-tipPercentage[2].addEventListener("click", function(){
-    let tipPerPerson = (valueOfTip[2].textContent / 100) * totalBill.value / noOfPeople.value
-    let totalTip = tipAmountPerPerson.textContent = tipPerPerson
-    totalBillPerPerson.textContent = totalTip + (totalBill.value / noOfPeople.value)
-    dollarIcon.style.display = "none"
-    userIcon.style.display = "none"
-});
-tipPercentage[3].addEventListener("click", function(){
-    let tipPerPerson = (valueOfTip[3].textContent / 100) * totalBill.value / noOfPeople.value
-    let totalTip = tipAmountPerPerson.textContent = tipPerPerson
-    totalBillPerPerson.textContent = totalTip + (totalBill.value / noOfPeople.value)
-    dollarIcon.style.display = "none"
-    userIcon.style.display = "none"
-});
-
-tipPercentage[4].addEventListener("click", function(){
-    let tipPerPerson = (valueOfTip[4].textContent / 100) * totalBill.value / noOfPeople.value
-    let totalTip = tipAmountPerPerson.textContent = tipPerPerson
-    totalBillPerPerson.textContent = totalTip + (totalBill.value / noOfPeople.value)
-    dollarIcon.style.display = "none"
-    userIcon.style.display = "none"
-});
-
-tipPercentage[5].addEventListener("click", function(){
-    let tipPerPerson = (20 / 100) * (totalBill.value / noOfPeople.value)
-    let totalTip = tipAmountPerPerson.textContent = tipPerPerson
-    totalBillPerPerson.textContent = totalTip + (totalBill.value / noOfPeople.value)
-    dollarIcon.style.display = "none"
-    userIcon.style.display = "none"
-})
+for (let index = 0; index < tipPercentage.length; index++) {
+    tipPercentage[index].addEventListener("click", function(){
+        if(totalBill.value == 0) return;
+        if(noOfPeople.value == 0) return;
+        let tipPerPerson = index === 5 ? (20 / 100) * (totalBill.value / noOfPeople.value) : (valueOfTip[index].textContent / 100) * (totalBill.value / noOfPeople.value);
+        let totalTip = tipAmountPerPerson.textContent = tipPerPerson
+        totalBillPerPerson.textContent = totalTip + (totalBill.value / noOfPeople.value)
+        dollarIcon.style.display = "none"
+        userIcon.style.display = "none"
+    });
+}
 
 resetButton.addEventListener("click", function(){
-    location.reload();
+    totalBillPerPerson.textContent = "0.00";
+    tipAmountPerPerson.textContent = "0.00";
+    noOfPeople.value = "";
+    totalBill.value = "";
 });
